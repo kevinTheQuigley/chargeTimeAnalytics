@@ -5,7 +5,7 @@ weatherHead = pd.read_csv('hly175.csv',skiprows = (0,1,2,3,4,5,6,7,8,9,10,11,12,
 weatherHead['date2'] = [dt.datetime.strptime(d,"%d-%b-%Y %H:%M") for d in weatherHead['date'] ]
 weatherHead['date_for_merge'] = weatherHead['date2'].dt.round('H')
 weatherHead = weatherHead[(weatherHead['date2'] >= '2021-04-01') & (weatherHead['date2'] < '2022-04-01')]
-weatherHead =weatherHead.drop(['date_for_merge','date2'], axis=1)
+weatherHead =weatherHead.drop(['date_for_merge'], axis=1)
 
 wind = pd.read_csv('wind.csv')
 demand = pd.read_csv('demand.csv')
@@ -21,7 +21,13 @@ forecastWind = forecastWind.drop([' REGION'], axis = 1)
 
 
 #combined= pd.merge(wind,demand,on='DATE & TIME',how='outer')
-combined= pd.merge(demand ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DATE & TIME')
+combined= pd.merge(generation ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DATE & TIME')
+combined['date2'] = [dt.datetime.strptime(d,"%d %B %Y %H:%M") for d in combined["DATE & TIME"] ]
+combined['minute'] = combined['date2'].dt.minute
+combined = combined[combined['minute'] == 0]
+combined= combined.sort['date2']
+#combined['month'] = combined['date2'].dt.month
 
-
-print(weatherHead.head(20000).to_csv('Combined.csv', index=False))
+weatherMerged = pd.merge(combined,weatherHead, on = 'date2')
+weatherMerged.drop(['DATE & TIME',"date_for_merge"],axis = 1)
+print(combined.to_csv('Combined.csv', index=False))
