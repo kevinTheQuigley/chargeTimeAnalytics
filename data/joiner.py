@@ -25,9 +25,9 @@ combined= pd.merge(generation ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DAT
 combined['date2'] = [dt.datetime.strptime(d,"%d %B %Y %H:%M") for d in combined["DATE & TIME"] ]
 combined['minute'] = combined['date2'].dt.minute
 combined = combined[combined['minute'] == 0]
-combined= combined.sort['date2']
+combined= combined.sort_values('date2')
 #combined['month'] = combined['date2'].dt.month
 
 weatherMerged = pd.merge(combined,weatherHead, on = 'date2')
-weatherMerged.drop(['DATE & TIME',"date_for_merge"],axis = 1)
-print(combined.to_csv('Combined.csv', index=False))
+#weatherMerged.drop(['DATE & TIME',"date_for_merge"],axis = 1)
+print(weatherMerged.to_csv('weatherMerged.csv', index=False))
