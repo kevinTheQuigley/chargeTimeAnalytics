@@ -11,8 +11,9 @@ wget  -O De2019.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Jan-2020%2000:00&dateto=31-Jan-2020%2023:59"
 wget  -O Fe2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Feb-2020%2000:00&dateto=28-Feb-2020%2023:59"
 wget  -O Ma2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Mar-2020%2000:00&dateto=31-Mar-2020%2023:59"
-csvstack *202*.csv > wind.csv
+csvstack *202*.csv > wind19.csv
 rm -rf *202*.csv
+rm -rf *201*.csv
 
 
 wget  -O Ap2019.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Apr-2019%2000:00&dateto=30-Apr-2019%2023:59"
@@ -27,8 +28,9 @@ wget  -O De2019.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Jan-2020%2000:00&dateto=31-Jan-2020%2023:59"
 wget  -O Fe2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Feb-2020%2000:00&dateto=28-Feb-2020%2023:59"
 wget  -O Ma2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Mar-2020%2000:00&dateto=31-Mar-2020%2023:59"
-csvstack *202*.csv > demand.csv
+csvstack *202*.csv > demand19.csv
 rm -rf *202*.csv
+rm -rf *201*.csv
 
 
 wget  -O Ap2019.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Apr-2019%2000:00&dateto=30-Apr-2019%2023:59"
@@ -43,8 +45,9 @@ wget  -O De2019.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Jan-2020%2000:00&dateto=31-Jan-2020%2023:59"
 wget  -O Fe2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Feb-2020%2000:00&dateto=28-Feb-2020%2023:59"
 wget  -O Ma2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Mar-2020%2000:00&dateto=31-Mar-2020%2023:59"
-csvstack *202*.csv > generation.csv
+csvstack *202*.csv > generation19.csv
 rm -rf *202*.csv
+rm -rf *201*.csv
 
 
 
@@ -60,8 +63,9 @@ wget  -O De2019.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Jan-2020%2000:00&dateto=31-Jan-2020%2023:59"
 wget  -O Fe2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Feb-2020%2000:00&dateto=28-Feb-2020%2023:59"
 wget  -O Ma2020.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Mar-2020%2000:00&dateto=31-Mar-2020%2023:59"
-csvstack *202*.csv > interconnection.csv
+csvstack *202*.csv > interconnection19.csv
 rm -rf *202*.csv
+rm -rf *201*.csv
 
 
 
