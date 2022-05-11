@@ -1,7 +1,7 @@
 import pandas as pd
 import datetime as dt
 
-weatherHead = pd.read_csv('hly175.csv',skiprows = (0,1,2,3,4,5,6,7,8,9,10,11,12,13))
+weatherHead = pd.read_csv('hly3723.csv',skiprows = (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21))
 weatherHead['date2'] = [dt.datetime.strptime(d,"%d-%b-%Y %H:%M") for d in weatherHead['date'] ]
 weatherHead['date_for_merge'] = weatherHead['date2'].dt.round('H')
 weatherHead = weatherHead[(weatherHead['date2'] >= '2019-04-01') & (weatherHead['date2'] < '2022-04-01')]
