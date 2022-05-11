@@ -6,7 +6,8 @@ weatherHead['date2'] = [dt.datetime.strptime(d,"%d-%b-%Y %H:%M") for d in weathe
 weatherHead['date_for_merge'] = weatherHead['date2'].dt.round('H')
 weatherHead = weatherHead[(weatherHead['date2'] >= '2019-04-01') & (weatherHead['date2'] < '2022-04-01')]
 dub_weatherHead =weatherHead.drop(['date_for_merge','date'], axis=1)
-dub_weatherHead.columns = ['dub_ind', 'dub_rain', 'dub_ind.1', 'dub_temp', 'dub_ind.2', 'dub_wetb', 'dub_dewpt','dub_vappr', 'dub_rhum', 'dub_msl', 'date2']
+#dub_weatherHead.columns = ['dub_ind', 'dub_rain', 'dub_ind.1', 'dub_temp', 'dub_ind.2', 'dub_wetb', 'dub_dewpt','dub_vappr', 'dub_rhum', 'dub_msl', 'date2']
+dub_weatherHead.columns = ['dub_ind','dub_rain','dub_ind','dub_temp','dub_ind','dub_wetb','dub_dewpt','dub_vappr','dub_rhum','dub_msl','dub_ind','dub_wdsp','dub_ind','dub_wddir','dub_ww','dub_w','dub_sun','dub_vis','dub_clht','dub_clamt', 'date2']
 
 
 weatherHead = pd.read_csv('hly2275.csv',skiprows = (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21))
