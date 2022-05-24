@@ -107,10 +107,11 @@ combined = combined[combined['minute'] == 0]
 combined= combined.sort_values('date2')
 #combined['month'] = combined['date2'].dt.month
 
-combined.columns = ['Date&Time','ActualGenerationMW','Region','ForecastDemand','ActualWind','Region2','ActualDemand','ForecastDemand','Region3']
-combined.drop('Region',1)
-combined.drop('Region2',1)
-combined.drop('Region3',1)
+combined.columns = ['Date&Time','ActualGenerationMW','Region','ForecastDemand','ActualWind','Region2','ActualDemand','ForecastDemand','Region3','date2','minute']
+#combined.drop('Region',1)
+#combined.drop('Region2',1)
+#combined.drop('Region3',1)
+combined = combined.drop(['Region','Region2','Region3'],axis = 1)
 
 weatherMerged = pd.merge(combined,weatherHead, on = 'date2')
 weatherMerged = weatherMerged.sort_values('date2')
