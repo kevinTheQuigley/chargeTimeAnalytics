@@ -65,15 +65,11 @@ don_weatherHead.columns = ['ind', 'don_rain', 'don_ind.1', 'don_temp', 'don_ind.
 weatherHead = pd.merge(ker_weatherHead, pd.merge(dub_weatherHead, pd.merge(cla_weatherHead, pd.merge(may_weatherHead,pd.merge(sli_weatherHead, pd.merge(cor_weatherHead, pd.merge(don_weatherHead,tip_weatherHead, on = 'date2'),on = 'date2'), on = 'date2'),on = 'date2'), on = 'date2'), on = 'date2'), on = 'date2')
 
 
-
-
-
 wind = pd.read_csv('wind19.csv')
 demand = pd.read_csv('demand19.csv')
 generation = pd.read_csv('generation19.csv')
 #forecastWind = pd.read_csv('forecastWind.csv')
 #interconnection = pd.read_csv('interconnection19.csv')
-
 
 combined19 = pd.merge(generation ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DATE & TIME')
 
@@ -83,7 +79,6 @@ generation = pd.read_csv('generation22.csv')
 #forecastWind = pd.read_csv('forecastWind22.csv')
 #interconnection = pd.read_csv('interconnection22.csv')
 
-
 combined20 = pd.merge(generation ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DATE & TIME')
 
 wind = pd.read_csv('wind21.csv')
@@ -91,7 +86,6 @@ demand = pd.read_csv('demand21.csv')
 generation = pd.read_csv('generation21.csv')
 #forecastWind = pd.read_csv('forecastWind21.csv')
 #interconnection = pd.read_csv('interconnection21.csv')
-
 
 combined21 = pd.merge(generation ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DATE & TIME')
 
@@ -104,16 +98,19 @@ combined = combined21.append(combined20.append(combined19))
 #forecastWind = forecastWind.drop([' REGION'], axis = 1)
 #interconnection = interconnection.drop(['REGION'], axis = 1)
 
-
 #combined= pd.merge(wind,demand,on='DATE & TIME',how='outer')
 #combined= pd.merge(generation ,pd.merge(wind,demand,on='DATE & TIME') ,on = 'DATE & TIME')
-
 
 combined['date2'] = [dt.datetime.strptime(d,"%d %B %Y %H:%M") for d in combined["DATE & TIME"] ]
 combined['minute'] = combined['date2'].dt.minute
 combined = combined[combined['minute'] == 0]
 combined= combined.sort_values('date2')
 #combined['month'] = combined['date2'].dt.month
+
+combined.columns = ['Date&Time','ActualGenerationMW','Region','ForecastDemand','ActualWind','Region2','ActualDemand','ForecastDemand','Region3']
+combined.drop('Region',1)
+combined.drop('Region2',1)
+combined.drop('Region3',1)
 
 weatherMerged = pd.merge(combined,weatherHead, on = 'date2')
 weatherMerged = weatherMerged.sort_values('date2')
