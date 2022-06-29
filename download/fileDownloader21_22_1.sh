@@ -1,8 +1,4 @@
 #!/bin/bash
-wget https://cli.fusio.net/cli/climate_data/webdata/hly175.zip
-echo Downloading Historical Data for 2022/2021
-unzip hly175.zip
-rm -rf hly175.zip Data_Licence.txt KeyHourly.txt
 
 wget  -O Ap2021.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Apr-2021%2000:00&dateto=30-Apr-2021%2023:59"
 wget  -O Ma2021.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-May-2021%2000:00&dateto=31-May-2021%2023:59"
@@ -16,6 +12,9 @@ wget  -O De2021.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Jan-2022%2000:00&dateto=31-Jan-2022%2023:59"
 wget  -O Fe2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Feb-2022%2000:00&dateto=28-Feb-2022%2023:59"
 wget  -O Ma2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Mar-2022%2000:00&dateto=31-Mar-2022%2023:59"
+wget  -O Ap2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Apr-2022%2000:00&dateto=31-Apr-2022%2023:59"
+wget  -O My2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-May-2022%2000:00&dateto=31-May-2022%2023:59"
+wget  -O Ju2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=windActual&region=ALL&datefrom=01-Jun-2022%2000:00&dateto=28-Jun-2022%2023:59"
 csvstack *202*.csv > wind22.csv
 rm -rf *202*.csv
 
@@ -32,6 +31,9 @@ wget  -O De2021.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Jan-2022%2000:00&dateto=31-Jan-2022%2023:59"
 wget  -O Fe2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Feb-2022%2000:00&dateto=28-Feb-2022%2023:59"
 wget  -O Ma2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Mar-2022%2000:00&dateto=31-Mar-2022%2023:59"
+wget  -O Ap2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Apr-2022%2000:00&dateto=30-Apr-2022%2023:59"
+wget  -O Ma2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-May-2022%2000:00&dateto=31-May-2022%2023:59"
+wget  -O Ju2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=demandActual&region=ALL&datefrom=01-Jun-2022%2000:00&dateto=28-Jun-2022%2023:59"
 csvstack *202*.csv > demand22.csv
 rm -rf *202*.csv
 
@@ -48,6 +50,9 @@ wget  -O De2021.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Jan-2022%2000:00&dateto=31-Jan-2022%2023:59"
 wget  -O Fe2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Feb-2022%2000:00&dateto=28-Feb-2022%2023:59"
 wget  -O Ma2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Mar-2022%2000:00&dateto=31-Mar-2022%2023:59"
+wget  -O Ap2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Apr-2022%2000:00&dateto=30-Apr-2022%2023:59"
+wget  -O May2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-May-2022%2000:00&dateto=31-May-2022%2023:59"
+wget  -O Ju2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=generationActual&region=ALL&datefrom=01-Jun-2022%2000:00&dateto=28-Jun-2022%2023:59"
 csvstack *202*.csv > generation22.csv
 rm -rf *202*.csv
 
@@ -65,5 +70,8 @@ wget  -O De2021.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv
 wget  -O Ja2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Jan-2022%2000:00&dateto=31-Jan-2022%2023:59"
 wget  -O Fe2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Feb-2022%2000:00&dateto=28-Feb-2022%2023:59"
 wget  -O Ma2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Mar-2022%2000:00&dateto=31-Mar-2022%2023:59"
+wget  -O Ap2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Apr-2022%2000:00&dateto=30-Apr-2022%2023:59"
+wget  -O May2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-May-2022%2000:00&dateto=31-May-2022%2023:59"
+wget  -O Ju2022.csv "https://www.smartgriddashboard.com/DashboardService.svc/csv?area=interconnection&region=ALL&datefrom=01-Jun-2022%2000:00&dateto=28-Jun-2022%2023:59"
 csvstack *202*.csv > interconnection22.csv
 rm -rf *202*.csv
