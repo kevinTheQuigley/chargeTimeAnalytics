@@ -1,4 +1,6 @@
 #!/bin/bash
+rm -rf dateList.txt
+python3 ./timeGenerator.py
 rm -rf ePrice.csv
 touch ePrice.csv
 printf "StartTime,\tEndTime,\tNetImbalanceVolume,\tImbalanceSettlementPrice\n" >> ePrice.csv
