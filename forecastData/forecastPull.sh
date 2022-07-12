@@ -14,9 +14,9 @@ curl $site -o output.txt
 #done < output.txt
 
 xmlstarlet sel -T -t \
-	-m / -o "temperature,\twindDirection,\twindSpeed,\twindGust,\thumidity,\tpressure\n" -n -b \
+	-m / -o "date,temperature,windDirection,windSpeed,windGust,humidity,pressure\n" -n -b \
 	-m /weatherdata/product/time \
-	-v "concat(@from,',',location/windDirection[@id='dd']/@deg,',',location/windSpeed[@id='ff']/@mps,',',location/windGust/@mps,',',location/humidity/@value,',',location/pressure[@id='pr']/@value)" \
+	-v "concat(@from,',',location/temperature[@id='TTT']/@value,',',location/windDirection[@id='dd']/@deg,',',location/windSpeed[@id='ff']/@mps,',',location/windGust/@mps,',',location/humidity/@value,',',location/pressure[@id='pr']/@value)" \
 	-n output.txt >>PPForecast.csv
 	#-m /weatherdata/product/time
 #rm -rf output.txt
