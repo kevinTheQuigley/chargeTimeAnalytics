@@ -19,7 +19,7 @@ tempToday=forecastPred['rawTemp'][0]
 tempDiff=(tempTomorrow-tempToday)
 # Row A
 a1, a2, a3 = st.columns(3)
-a1.image(Image.open('streamlit-logo-secondary-colormark-darktext.png'))
+a1.image(Image.open('chargeTimeAnalytics.png'))
 a2.metric("Wind", "9 mph", "-8%")
 a3.metric("Humidity", "86%", "4%")
 
@@ -31,7 +31,7 @@ b3.metric("Humidity", "86%", "4%")
 b4.metric("Humidity", "86%", "4%")
 
 # Row C
-c1, c2 = st.columns((7,3))
+c1, c2 = st.columns((3,7))
 with c1:
     st.markdown('### Heatmap')
     plost.time_hist(
@@ -43,8 +43,9 @@ with c1:
     aggregate='median',
     legend=None)
 with c2:
-    st.markdown('### Bar chart')
-    plost.donut_chart(
-        data=stocks,
-        theta='q2',
-        color='company')
+    st.image(Image.open('forecast.png'))
+#    st.markdown('### Bar chart')
+#    plost.donut_chart(
+#        data=stocks,
+#        theta='q2',
+#        color='company')
