@@ -2,7 +2,7 @@
 |||||||||CHARGE TIME ANALYTICS |||||||
 \\\\\\\\\\\\\\\\\\\///////////////////
 
-![image](https://github.com/kevinTheQuigley/chargeTimeAnalytics/blob/master/dashboard/chargeTimeDashboard/forecast.png)
+![image](https://github.com/kevinTheQuigley/chargeTimeAnalytics/blob/master/dashboard/chargeTimeDashboard/chargeTimeAnalytics.png)
 
 
 Hello! 
