@@ -14,3 +14,7 @@ bash priceFinder.sh
 # Moving downloaded files and joining into a single file
 cp download/*.csv data/
 python3 download/joiner.py
+
+
+# Downloading next weeks weather forecast (Needed for generating predictions)
+bash forecastData/forecastPull.sh
