@@ -8,8 +8,9 @@ bash metDownload.sh
 
 
 #Downloading  latest weeks worth of data from SEMO
-python3 download/timeGenerator.py
-bash download/priceFinder.sh
+cd download
+bash priceFinder.sh
+cd ../
 
 # Moving downloaded files and joining into a single file
 cp download/*.csv data/
