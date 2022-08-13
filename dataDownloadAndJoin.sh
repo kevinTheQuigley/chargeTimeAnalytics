@@ -9,7 +9,7 @@ bash metDownload.sh
 
 #Downloading  latest weeks worth of data from SEMO
 cd download
-bash download/priceFinder.sh
+bash priceFinder.sh
 cd ../
 
 # Moving downloaded files and joining into a single file
