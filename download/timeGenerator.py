@@ -9,6 +9,6 @@ def perdelta(start, end, delta):
         yield curr
         curr += delta
 
-dts = [dt.strftime('%Y%m%d%H%M') for dt in perdelta(datetime(2022,2,1,0),datetime(2022,6,6,0),timedelta(minutes=30))]
+dts = [dt.strftime('%Y%m%d%H%M') for dt in perdelta(datetime(2022,7,1,0),datetime(2022,7,22,0),timedelta(minutes=30))]
 for i in dts:
     f.write("https://reports.sem-o.com/documents/PUB_30MinAvgImbalPrc_"+i+".xml\n")
