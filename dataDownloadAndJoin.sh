@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# cd'ing to download folder
+cd download
 # Downloading files 
 bash download/fileDownloader21_22_1.sh
 bash download/fileDownloader20_21_1.sh
@@ -8,14 +10,21 @@ bash metDownload.sh
 
 
 #Downloading  latest weeks worth of data from SEMO
-cd download
 bash priceFinder.sh
-cd ../
 
 # Moving downloaded files and joining into a single file
-cp download/*.csv data/
-python3 download/joiner.py
+cp ./*.csv ../data/
 
 
+# cd'ing to data folder
+cd ../data
+
+# joining data
+python3 joiner.py
+
+
+cd ../forecastData
 # Downloading next weeks weather forecast (Needed for generating predictions)
-bash forecastData/forecastPull.sh
+bash forecastPull.sh
+
+cd ../
