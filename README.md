@@ -1,6 +1,6 @@
-///////////////////\\\\\\\\\\\\\\\\\\\
-|||||||||CHARGE TIME ANALYTICS |||||||
-\\\\\\\\\\\\\\\\\\\///////////////////
+#///////////////////\\\\\\\\\\\\\\\\\\\
+#|||||||||CHARGE TIME ANALYTICS |||||||
+#\\\\\\\\\\\\\\\\\\\///////////////////
 
 
 ![image](https://github.com/kevinTheQuigley/chargeTimeAnalytics/blob/master/dashboard/chargeTimeDashboard/chargeTimeAnalytics.png)
