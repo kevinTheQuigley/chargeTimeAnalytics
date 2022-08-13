@@ -1,6 +1,6 @@
 #!/bin/bash
-rm -rf ePrice.csv
-touch ePrice.csv
+#rm -rf ePrice.csv
+#touch ePrice.csv
 printf "StartTime,\tEndTime,\tNetImbalanceVolume,\tImbalanceSettlementPrice\n" >> ePrice.csv
 tr -d '\r' < dateList.txt > dateListNoR.txt
 while IFS= read -r line
