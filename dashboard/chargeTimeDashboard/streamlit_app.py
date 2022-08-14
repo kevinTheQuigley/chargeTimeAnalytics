@@ -25,7 +25,7 @@ a3.metric("Humidity", "86%", "4%")
 
 # Row B
 b1, b2, b3, b4 = st.columns(4)
-b1.metric("Temperature", (str(tempTomorrow)+"°C"),(str(tempDiff)+"°C"))
+b1.metric("Temperature", "24"+"°C","-3°C")
 b2.metric("Wind", "9 mph", "-8%")
 b3.metric("Humidity", "86%", "4%")
 b4.metric("Humidity", "86%", "4%")
@@ -43,7 +43,7 @@ with c1:
     aggregate='median',
     legend=None)
 with c2:
-    st.image(Image.open('forecast.png'))
+    st.image(Image.open('forecastFuture.png'))
 #    st.markdown('### Bar chart')
 #    plost.donut_chart(
 #        data=stocks,
