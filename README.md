@@ -51,6 +51,15 @@ Prediction Generation
 Dashboard creation
 - streamlit run streamlit_app.py --server.port 8070
 
+Creating a schedule to pull wholesale price data 
+- launch with
+- crontab -e
+
+- First program runs every week Sunday at 12:00
+- 0 0 * * 0 /bin/bash /home/ubuntu/chargeTimeAnalytics/chargeTimeAnalytics/download/priceFinder.sh![image](https://user-images.githubusercontent.com/65398673/184603255-567a5c4a-6372-4a0e-84e6-484f839b33ae.png)
+
+
+
 
 ### Licenses
 License
