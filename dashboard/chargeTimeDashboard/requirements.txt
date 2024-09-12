@@ -1,4 +1,0 @@
-streamlit==1.5.0
-click==8.0.4
-pandas
-plost
