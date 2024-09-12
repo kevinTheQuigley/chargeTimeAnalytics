@@ -1,0 +1,2 @@
+ROW,TradeDate,StartTime,EndTime,NetImbalanceVolume,ImbalancePrice,ASPPriceUsage,TotalUnitAvailability,DemandControlVolume,PMEA,QPAR,AdministeredScarcityPrice,MarketBackupPrice,ShortTermReserveQuantity,OperatingReserveRequirement
+1,2024-09-12,2024-09-12T06:45:00,2024-09-12T06:50:00,54.183,224.29,N,7173.71,0,18577,10,-1000,174.95,3028.333,503.964

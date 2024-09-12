@@ -1,0 +1,15 @@
+ROW
+TradeDate
+StartTime
+EndTime
+NetImbalanceVolume
+ImbalancePrice
+ASPPriceUsage
+TotalUnitAvailability
+DemandControlVolume
+PMEA
+QPAR
+AdministeredScarcityPrice
+MarketBackupPrice
+ShortTermReserveQuantity
+OperatingReserveRequirement
