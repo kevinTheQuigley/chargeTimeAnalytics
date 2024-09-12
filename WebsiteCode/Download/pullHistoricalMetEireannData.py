@@ -23,7 +23,7 @@ def download_and_extract(url, station_name, download_folder):
     # Remove unwanted files
     os.remove(file_path)  # Remove the zip file
     # Check and remove the extra text files if they exist
-    for extra_file in ['Data_Licence.txt', 'KeyHourly.txt']:
+    for extra_file in ['Data_Licence.txt', 'KeyHourly.txt',"Data_License.pdf"]:
         extra_file_path = os.path.join(download_folder, extra_file)
         if os.path.exists(extra_file_path):
             os.remove(extra_file_path)
@@ -41,7 +41,7 @@ stations = {
 }
 
 # Specify the download folder
-download_folder = "WebsiteCode/DataStorage/RawData/MetEireann"
+download_folder = "WebsiteCode/DataStorage/RawData/MetHistorical"
 
 # Iterate over the stations and download the data
 for url, station_name in stations.items():

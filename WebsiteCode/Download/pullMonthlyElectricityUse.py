@@ -1,3 +1,4 @@
+import os
 import requests
 from datetime import datetime
 
@@ -21,7 +22,14 @@ months_days = {
 def is_leap_year(year):
     return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
 
-# Function to download data
+# Define the folder path where the files should be saved
+folder_path = "WebsiteCode/DataStorage/RawData/SmartGrid"
+
+# Create the directory if it doesn't exist
+if not os.path.exists(folder_path):
+    os.makedirs(folder_path)
+
+# Function to download data and save to the correct folder
 def download_data(area, year, month, days):
     datefrom = f"01-{month}-{year} 00:00"
     dateto = f"{days}-{month}-{year} 23:59"
@@ -30,13 +38,15 @@ def download_data(area, year, month, days):
     
     response = requests.get(url)
     if response.status_code == 200:
-        with open(filename, 'w') as f:
+        # Save the file to the specified directory
+        file_path = os.path.join(folder_path, filename)
+        with open(file_path, 'w') as f:
             f.write(response.text)
-        print(f"Downloaded: {filename}")
+        print(f"Downloaded and saved: {file_path}")
     else:
         print(f"Failed to download: {filename}")
 
-# Loop through each year, month, and area
+# Loop through each year, month, and area, saving the files to the new directory
 for year in range(start_year, end_year + 1):
     for area in areas:
         for month, days in months_days.items():
