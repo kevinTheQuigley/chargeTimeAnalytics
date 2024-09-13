@@ -4,26 +4,21 @@ import xml.etree.ElementTree as ET
 import csv
 from datetime import datetime, timedelta
 
-# Function to generate URLs for the last month, for each hour
-def generate_urls_for_last_month():
+# Function to generate URLs for the last 24 hours (yesterday)
+def generate_urls_for_last_day():
     base_url = "https://reports.sem-o.com/documents/PUB_5MinImbalPrc_"
     urls = []
-    today = datetime.now()
     
-    # Start from the first of the current month and go back to the first of the previous month
-    start_date = today.replace(day=1) - timedelta(days=1)
-    end_date = start_date.replace(day=1)
-
-    # Iterate over each day in the previous month
-    current_date = start_date
-    while current_date >= end_date:
-        # Iterate over each hour of the day
-        for hour in range(24):
-            # Format the URL with the appropriate date and time
-            formatted_time = current_date.strftime('%Y%m%d') + f"{hour:02}00"
-            url = base_url + formatted_time + ".xml"
-            urls.append(url)
-        current_date -= timedelta(days=1)
+    # Get the current date and the previous day
+    today = datetime.now()
+    last_day = today - timedelta(days=1)
+    
+    # Iterate over each hour of the previous day
+    for hour in range(24):
+        # Format the URL with the appropriate date and time
+        formatted_time = last_day.strftime('%Y%m%d') + f"{hour:02}00"
+        url = base_url + formatted_time + ".xml"
+        urls.append(url)
     
     return urls
 
@@ -33,6 +28,10 @@ def download_xml_file(url):
     response = requests.get(url)
     
     if response.status_code == 200:
+        # Check if the content contains an error message (e.g., empty error message)
+        if b'{"errorMessage":"' in response.content:
+            print(f"Skipping {url} due to XML error.")
+            return None
         return response.content  # Return the content for further processing
     else:
         print(f"Failed to download the file. Status code: {response.status_code} for {url}")
@@ -59,8 +58,8 @@ def extract_data_from_xml(xml_content):
     
     return rows
 
-# Function to save combined data into a CSV file for the month
-def save_to_csv(data, csv_file_path):
+# Function to save extracted data into a CSV file row-by-row
+def append_to_csv(data, csv_file_path):
     if data:
         # Define the columns you want in the CSV
         columns = [
@@ -70,25 +69,21 @@ def save_to_csv(data, csv_file_path):
             'MarketBackupPrice', 'ShortTermReserveQuantity', 'OperatingReserveRequirement'
         ]
         
-        # Write to CSV
-        with open(csv_file_path, 'w', newline='') as csvfile:
+        # Append data to CSV file
+        with open(csv_file_path, 'a', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=columns)
-            writer.writeheader()
+            
+            # If file is empty, write the header
+            if os.stat(csv_file_path).st_size == 0:
+                writer.writeheader()
+            
+            # Write data
             writer.writerows(data)
-        
-        print(f"Data saved successfully to {csv_file_path}")
 
 # Main function to orchestrate the download and processing
-def process_last_month_data():
-    # Generate URLs for the last month
-    urls = generate_urls_for_last_month()
-    
-    # Create a directory for storing CSV files
-    save_directory = "WebsiteCode/DataStorage/RawData/Semo/ImbalancePriceReports/"
-    os.makedirs(save_directory, exist_ok=True)
-
-    # Data storage for the entire month's reports
-    monthly_data = []
+def process_last_day_data(csv_file_path):
+    # Generate URLs for the last day
+    urls = generate_urls_for_last_day()
     
     # Iterate over the generated URLs and process each XML
     for url in urls:
@@ -98,16 +93,26 @@ def process_last_month_data():
         if xml_content:
             # Extract data from the XML content
             extracted_data = extract_data_from_xml(xml_content)
-            # Append extracted data to the monthly data list
-            monthly_data.extend(extracted_data)
-    
-    # Determine the current month and year to name the CSV file
-    current_date = datetime.now().replace(day=1) - timedelta(days=1)
-    month_name = current_date.strftime("%b").lower()  # E.g., "sep" or "aug"
-    csv_file_path = os.path.join(save_directory, f"ImbalancePriceReports_{month_name}.csv")
-    
-    # Save the combined data into a CSV file
-    save_to_csv(monthly_data, csv_file_path)
+            # Append extracted data to the CSV file row by row
+            append_to_csv(extracted_data, csv_file_path)
+
+# Prompt the user to enter the CSV file path or use the default
+def get_csv_file_path():
+    # Optionally, allow the user to input a path or use a default path
+    default_path = "WebsiteCode/DataStorage/RawData/Semo/ImbalancePriceReports/Daily/"
+    os.makedirs(default_path, exist_ok=True)  # Ensure the directory exists
+
+    # Ask for user input or use default
+    csv_file_path = default_path
+    #input(f"Enter CSV file path (or press Enter to use default: {default_path}): ")
+    if not csv_file_path:
+        # Use default path and create a file named with the current date
+        last_day = datetime.now() - timedelta(days=1)
+        day_name = last_day.strftime("%Y%m%d")  # E.g., "20240912"
+        csv_file_path = os.path.join(default_path, f"ImbalancePriceReports_{day_name}.csv")
+
+    return csv_file_path
 
 # Run the script
-process_last_month_data()
+csv_file_path = get_csv_file_path()  # Get the CSV file location
+process_last_day_data(csv_file_path)  # Process and append data to the CSV
