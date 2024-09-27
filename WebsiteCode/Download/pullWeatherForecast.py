@@ -72,7 +72,7 @@ def parse_and_save_xml_to_csv(xml_data, output_csv_file):
         print(f"Saved weather data to {output_csv_file}")
 
 # Specify directory containing the CSV files
-csv_directory = "WebsiteCode/DataStorage/RawData/MetEireann/"
+csv_directory = "WebsiteCode/DataStorage/RawData/MetHistorical/"
 output_directory = "WebsiteCode/DataStorage/RawData/MetForecast"
 
 # Create output directory if it doesn't exist

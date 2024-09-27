@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  weather_forecast:
+    build:
+      context: .
+    container_name: Forecast_Downloader 
+    volumes:
+      - ../DataStorage/RawData:/app/WebsiteCode/DataStorage/RawData # Mount RawData to the container
+      - ./:/app/WebsiteCode
+    working_dir: /app
+    command: cron -f 
+    restart: always

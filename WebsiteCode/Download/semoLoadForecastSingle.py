@@ -87,11 +87,7 @@ def process_previous_forecast():
     if xml_content:
         extracted_data = extract_data_from_xml(xml_content)
         
-        # Get the DeliveryDate from the first row (if it exists) to use in the CSV file name
-        if extracted_data:
-            delivery_date = extracted_data[0]['DeliveryDate']
-        else:
-            delivery_date = datetime.now().strftime('%Y-%m-%d')  # Use current date if no data
+        delivery_date = datetime.now().strftime('%Y-%m-%d')  # Use current date if no data
         
         # Construct the file path and file name
         folder_path = "WebsiteCode/DataStorage/RawData/Semo/LoadForecasting"
