@@ -92,7 +92,7 @@ def process_last_24_hours_data():
         delivery_date = datetime.now().strftime('%Y-%m-%d')  # Use current date if no data
     
     # Construct the file path and file name
-    folder_path = "WebsiteCode/DataStorage/RawData/Semo/LoadForecasting"
+    folder_path = "WebsiteCode/DataStorage/RawData/Semo/LoadForecastingMultiple"
     os.makedirs(folder_path, exist_ok=True)  # Ensure the directory exists
     
     csv_file_path = os.path.join(folder_path, f"LoadForecast_{delivery_date}.csv")

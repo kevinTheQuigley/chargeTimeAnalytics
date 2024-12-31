@@ -42,7 +42,7 @@ Data download- (In a linux Terminal)
 Data Analytics:- 
 - Execute ChargeTimeAnalyticsNotebookFinal.ipynb
 
-ML model generation (Note this must be executed on a suitable linux server, as some packages are unix-specfic
+ML model generation (Note this must be executed on a suitable linux server, as some packages are unix-specfic)
 - Execute ChargeTimeMLFinal.ipynb
 
 Prediction Generation
