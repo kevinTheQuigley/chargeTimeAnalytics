@@ -14,3 +14,5 @@ process3.wait()
 
 # Now run the pushDataToSQLTable.py script after the first three have completed
 subprocess.run(["python", "pushDataToSQLTable.py"])
+
+# Need to add Logging
