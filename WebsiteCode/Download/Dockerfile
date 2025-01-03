@@ -11,6 +11,8 @@ COPY ./* /app
 RUN apt-get update && apt-get install -y \
     libpq-dev gcc
 
+RUN apt-get update && apt-get install -y procps
+
 # Install any dependencies (optional)
 RUN pip install requests  # Include necessary packages here
 RUN pip install sqlalchemy
@@ -19,11 +21,22 @@ RUN pip install pytz
 RUN pip install requests
 RUN pip install pandas
 
-# Command to run the script
-CMD ["python", "./hourlyForecastPull.py"]
 
-RUN apt-get update && apt-get install -y cron
+# Install cron and other dependencies
+RUN apt-get update && apt-get install -y cron && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 COPY mycron /etc/cron.d/mycron
 RUN chmod 0644 /etc/cron.d/mycron
 RUN crontab /etc/cron.d/mycron
-CMD cron -f
+
+# Install rsyslog
+RUN apt-get update && apt-get install -y rsyslog && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Create a symlink for 'python' pointing to 'python3'
+RUN ln -s /usr/local/bin/python3 /usr/bin/python
+
+# Start rsyslog alongside cron
+CMD service rsyslog start && cron -f
+

@@ -1,1 +1,1 @@
-* * * * * python /app/hourlyForecastPull.py
+* * * * * cd /app && /usr/local/bin/python /app/hourlyForecastPull.py >> /app/cron.log 2>&1
