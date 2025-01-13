@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  postgres:
+    build:
+      context: ./datastorage 
+      dockerfile: Dockerfile
+    container_name: load_forecasting_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: something  # Replace with your actual password
+      POSTGRES_DB: load_forecasting
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data 
+    restart: always
+    networks:
+      datastorage_default:  
+        aliases:
+          - load_forecasting_db
+
+  forecast_downloader:
+    build:
+      context: ./download 
+    container_name: Forecast_Downloader
+    volumes:
+      - ../DataStorage/RawData:/app/WebsiteCode/DataStorage/RawData
+      - ./:/app/WebsiteCode
+    working_dir: /app
+    command: cron -f
+    networks:
+      - datastorage_default 
+    restart: always
+    depends_on:
+      - postgres
+
+networks:
+  datastorage_default:
+    external: true

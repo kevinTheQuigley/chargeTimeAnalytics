@@ -1,15 +1,15 @@
-# Use an official Python runtime as a base image
-FROM python:3.9-slim
+# Use the official PostgreSQL image as the base image
+FROM postgres:latest
 
-# Set the working directory in the container
-WORKDIR /app
+# Set environment variables for PostgreSQL
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD something 
+ENV POSTGRES_DB load_forecasting
 
-# Copy the necessary files to the container
-COPY load_csv_to_db.py .
-COPY WebsiteCode/DataStorage/RawData/Semo/LoadForecasting/LoadForecast_2024-09-12.csv ./WebsiteCode/DataStorage/RawData/Semo/LoadForecasting/
+# Expose the default PostgreSQL port
+EXPOSE 5432
 
-# Install Python dependencies
-RUN pip install pandas sqlalchemy psycopg2
+# Copy initialization scripts or SQL files (if needed)
+# COPY ./init.sql /docker-entrypoint-initdb.d/ 
 
-# Run the Python script
-CMD ["python", "load_csv_to_db.py"]
+# The default PostgreSQL image handles the database server startup

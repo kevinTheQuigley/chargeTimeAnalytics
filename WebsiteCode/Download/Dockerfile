@@ -31,8 +31,9 @@ RUN chmod 0644 /etc/cron.d/mycron
 RUN crontab /etc/cron.d/mycron
 
 # Install rsyslog
-RUN apt-get update && apt-get install -y rsyslog && \
+RUN apt-get update && apt-get install -y rsyslog && apt-get install -y vim sudo && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
 
 # Create a symlink for 'python' pointing to 'python3'
 RUN ln -s /usr/local/bin/python3 /usr/bin/python
